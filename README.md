@@ -1,2 +1,4 @@
-# ALL CODE in This Repo. of CTSD - 2 Parul University 
-$RANDHIR K.
+# In This Repository 
+(a) Code :       CTSD - 2 Lab 
+(b) Institute : (Parul Institute of Technology.)
+--Randhir K.
