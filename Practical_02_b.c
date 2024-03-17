@@ -1,18 +1,30 @@
 #include<stdio.h>
-#define PI 3.14
-#define Benny// define the conditional compilation
+#define Area
+#define PI 3.14159
+#define AreaRec
 
-int main()
-{   float r,res,D;
-    printf("Enter the Value of Radius of circle :\n");
-    scanf("%f",&r);
+void main()
+{
+    printf("\n enter the redius to get area of circle\n");
+    int r;
+    scanf("%d", &r);
 
-    #ifdef Benny
-    res=PI*r*r;
-    printf("Area of The Circle is : %f\n",res); // compile only if it is define okay
+
+    #ifdef Area
+    int res=PI*r*r;
+    printf("Area of circle is : %d\n", res);
     #endif
- 
-    D=2*r;
-    printf("Diameter of The circle is: %f",D);
-    return 0;
+
+    #ifdef AreaRec
+    printf("To find the area of rectangle enter the length and breadth of the rectangle ");
+    int l,b;
+    scanf("%d", &l);
+    scanf("%d", &b);
+    int recRes=l*b;
+    printf("Area of rectangle is : %d\n", recRes);
+    #endif
+
+
+    
+
 }
