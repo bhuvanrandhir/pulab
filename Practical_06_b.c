@@ -1,61 +1,82 @@
 #include <stdio.h>
-
-void swap(int *a, int *b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+//Function For Taking Elements From User
+void inputarr(int arr[], int size);
+//Function to print array
+void printarr(int arr[], int size);
+//Function For Bubble Sort
+void bubbleSort(int arr[], int size);
+//Function For Swapping
+void swap(int *a, int *b);
+//Main Function
+int main(){
+    int n;
+    printf("Enter the Size Of Array : ");
+    scanf("%d",&n);
+    int arr[n];
+    inputarr(arr,n);
+    printf("\n");
+    // int arr[] = {5, 2, 9, 4, 1, 3, 8, 7, 6};
+    // int n = sizeof(arr) / sizeof(arr[0]);
+    printf("Original Elements : ");
+    printarr(arr,n);
+    
+    printf("Sorted Elements : ");
+    bubbleSort(arr,n);
+    printarr(arr,n);
+    
+    printf("products of every two odd position elements : ");
+    printf("{ ");
+    for(int i=0;i<n-2;i++){
+        if(i%2==0){
+            printf("%d ",arr[i]*arr[i+2]);
+        }
+    }
+    printf(" }");
+    
+    printf("\n");
+    printf("sum of every two even position elements Explanation : ");
+    printf("{ ");
+    for(int i=1;i<n-2;i++){
+        if(i%2==1){
+            printf("%d ",arr[i]+arr[i+2]);
+        }
+    }
+    printf(" }");
+    
+return 0;
 }
 
-void selectionSort(int arr[], int n) {
-    int i, j, min_idx;
 
-    // One by one move boundary of unsorted subarray
-    for (i = 0; i < n - 1; i++) {
-        // Find the minimum element in unsorted array
-        min_idx = i;
-        for (j = i + 1; j < n; j++) {
-            if (arr[j] < arr[min_idx]) {
-                min_idx = j;
+void inputarr(int arr[], int size){
+    printf("Enter Elements Of Array : ");
+    for(int i=0;i<size;i++){
+        scanf("%d",&arr[i]);
+    }
+}
+
+void printarr(int arr[], int size){
+    printf("{");
+    
+    for(int i=0;i<size;i++){
+        printf(" %d", arr[i]);
+    }
+    printf(" }");
+    printf("\n");
+}
+
+void bubbleSort(int arr[], int size){
+    int i,j;
+    for(i=0;i<size-1;i++){
+        for(j=0;j<size-i-1;j++){
+            if(arr[j]>arr[j+1]){
+                swap(&arr[j],&arr[j+1]);
             }
         }
-
-        // Swap the found minimum element with the first element
-        swap(&arr[min_idx], &arr[i]);
     }
 }
 
-int main() {
-    int arr[] = {9, 1, 9, 8, 3, 5, 4, 7, 2, 6};
-    int n = sizeof(arr) / sizeof(arr[0]);
-
-    printf("Original array: ");
-    for (int i = 0; i < n; i++) {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
-
-    // Sort the array using selection sort (or any other sorting algorithm)
-    selectionSort(arr, n);
-
-    printf("Sorted array: ");
-    for (int i = 0; i < n; i++) {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
-
-    int product_odd = 1;  // Initialize product of odd elements to 1
-    int sum_even = 0;     // Initialize sum of even elements to 0
-
-    for (int i = 0; i < n; i++) {
-        if (i % 2 == 0) {  // If even position (0-based indexing)
-            sum_even += arr[i];
-        } else {  // If odd position
-            product_odd *= arr[i];
-        }
-    }
-
-    printf("Product of every two odd position elements: %d\n", product_odd);
-    printf("Sum of every two even position elements: %d\n", sum_even);
-
-    return 0;
+void swap(int *a, int *b){
+    int temp = *a;
+    *a=*b;
+    *b=temp;
 }
